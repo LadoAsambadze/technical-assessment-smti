@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+enum Phase {
+  new
+  sent_to_hotels
+  offers_received
+  completed
+}
+
+model Inquiry {
+  id             String   @id @default(cuid())
+  clientName     String
+  contactPerson  String
+  eventType      String
+  eventDate      DateTime
+  guestCount     Int
+  potentialValue Float
+  phase          Phase    @default(new)
+  hotels         String
+  notes          String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([phase])
+  @@index([clientName])
+  @@index([eventDate])
+}
+ 
