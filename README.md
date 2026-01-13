@@ -11,23 +11,23 @@ A modern, full-stack Kanban board for managing B2B event inquiries through multi
 
 ### Setup Instructions
 
+```bash
 # 1. Clone the repository
-
 git clone <repository-url>
 cd technical-assessment
 
 # 2. Install dependencies
-
 npm install
 
 # 3. Run the application (this will automatically set up the database, seed it, build, and start the server)
-
 npm run start:full
-The npm run start:full command will:
+```
+
+The `npm run start:full` command will:
 
 ✅ Generate Prisma Client
 
-✅ Push database schema (creates the database if it doesn’t exist)
+✅ Push database schema (creates the database if it doesn't exist)
 
 ✅ Seed with sample inquiries
 
@@ -39,65 +39,65 @@ Visit http://localhost:3000 to see the application.
 
 ### Useful Commands
 
+```bash
 # View database in Prisma Studio
-
 npm run db:studio
 
 # Reset database (clear all data and reseed)
-
 npm run db:reset
 
 # Build for production
-
 npm run build
 
 # Start production server
-
 npm start
+```
 
 ## 📁 Project Structure
 
+```
 technical-assessment/
 ├── app/
-│ ├── api/
-│ │ └── inquiries/
-│ │ ├── route.ts # GET all inquiries with filters
-│ │ └── [id]/
-│ │ └── route.ts # GET, PATCH individual inquiry
-│ ├── layout.tsx # Root layout
-│ └── page.tsx # Main page with Kanban board
+│   ├── api/
+│   │   └── inquiries/
+│   │       ├── route.ts              # GET all inquiries with filters
+│   │       └── [id]/
+│   │           └── route.ts          # GET, PATCH individual inquiry
+│   ├── layout.tsx                    # Root layout
+│   └── page.tsx                      # Main page with Kanban board
 ├── components/
-│ ├── inquiry/
-│ │ ├── inquiry/
-│ │ │ ├── inquiry-card.tsx # Individual inquiry card
-│ │ │ ├── inquiry-detail-modal.tsx # Detail view modal
-│ │ │ └── inquiry-filters.tsx # Filter panel
-│ │ ├── kanban/
-│ │ │ ├── kanban-board.tsx # Main board container
-│ │ │ └── kanban-column.tsx # Individual column
-│ │ └── ui-states/
-│ │ ├── loading-state.tsx # Loading skeleton
-│ │ ├── error-state.tsx # Error display
-│ │ └── no-result-state.tsx # Empty state
-│ └── layout/
-│ ├── page-container.tsx # Main page wrapper
-│ ├── page-header.tsx # Header component
-│ └── page-footer.tsx # Footer component
+│   ├── inquiry/
+│   │   ├── inquiry/
+│   │   │   ├── inquiry-card.tsx      # Individual inquiry card
+│   │   │   ├── inquiry-detail-modal.tsx # Detail view modal
+│   │   │   └── inquiry-filters.tsx   # Filter panel
+│   │   ├── kanban/
+│   │   │   ├── kanban-board.tsx      # Main board container
+│   │   │   └── kanban-column.tsx     # Individual column
+│   │   └── ui-states/
+│   │       ├── loading-state.tsx     # Loading skeleton
+│   │       ├── error-state.tsx       # Error display
+│   │       └── no-result-state.tsx   # Empty state
+│   └── layout/
+│       ├── page-container.tsx        # Main page wrapper
+│       ├── page-header.tsx           # Header component
+│       └── page-footer.tsx           # Footer component
 ├── lib/
-│ ├── constants/
-│ │ └── inquiry.constants.ts # Phase config, thresholds
-│ ├── services/
-│ │ └── inquiry.service.ts # API client functions
-│ ├── types/
-│ │ └── inquiry.types.ts # TypeScript interfaces
-│ ├── utils/
-│ │ ├── formatter.ts # Date/currency formatters
-│ │ └── utils.ts # Utility functions
-│ └── prisma.ts # Prisma client singleton
+│   ├── constants/
+│   │   └── inquiry.constants.ts      # Phase config, thresholds
+│   ├── services/
+│   │   └── inquiry.service.ts        # API client functions
+│   ├── types/
+│   │   └── inquiry.types.ts          # TypeScript interfaces
+│   ├── utils/
+│   │   ├── formatter.ts              # Date/currency formatters
+│   │   └── utils.ts                  # Utility functions
+│   └── prisma.ts                     # Prisma client singleton
 ├── store/
-│ └── inquiry.store.ts # Zustand state management
+│   └── inquiry.store.ts              # Zustand state management
 └── prisma/
-└── schema.prisma # Database schema
+    └── schema.prisma                 # Database schema
+```
 
 ## 🛠 Technology Stack
 
@@ -304,15 +304,11 @@ Update inquiry phase
 - [ ] Test on mobile device
 - [ ] Test keyboard navigation
 
-## 📝 Environment Variables
+## 📝 Database Configuration
 
-Create a `.env` file:
+The application uses SQLite by default with Prisma ORM. The database file is created automatically at `./dev.db` when you run the setup commands.
 
-```env
-DATABASE_URL="postgresql://user:password@localhost:5432/inquiry_db"
-# or for SQLite
-DATABASE_URL="file:./dev.db"
-```
+No environment variables are required as all configuration is included directly in the project for testing purposes.
 
 ## 🤝 Contributing
 
