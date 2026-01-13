@@ -13,14 +13,6 @@ export async function GET(request: NextRequest) {
     const dateTo = searchParams.get("dateTo");
     const minValue = searchParams.get("minValue");
 
-    console.log("API GET: Fetching inquiries with filters", {
-      clientName,
-      dateFrom,
-      dateTo,
-      minValue,
-    });
-
-    // Build where clause
     const where: any = {};
 
     if (clientName) {
@@ -50,15 +42,12 @@ export async function GET(request: NextRequest) {
       orderBy: { createdAt: "desc" },
     });
 
-    // Parse hotels JSON string back to array
     const formattedInquiries = inquiries.map((inq) => ({
       ...inq,
       hotels: JSON.parse(inq.hotels),
       createdAt: inq.createdAt.toISOString(),
       updatedAt: inq.updatedAt.toISOString(),
     }));
-
-    console.log("API GET: Returning", formattedInquiries.length, "inquiries");
 
     return NextResponse.json({
       inquiries: formattedInquiries,

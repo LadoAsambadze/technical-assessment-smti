@@ -11,12 +11,9 @@ export async function PATCH(
   await delay(500);
 
   try {
-    // Await params in Next.js 15+
     const { id } = await context.params;
     const body = await request.json();
     const { phase } = body as { phase: Phase };
-
-    console.log("API PATCH: Update request", { id, phase });
 
     const validPhases: Phase[] = [
       "new",
@@ -43,8 +40,6 @@ export async function PATCH(
       updatedAt: updatedInquiry.updatedAt.toISOString(),
     };
 
-    console.log("API PATCH: Successfully updated", id, "to phase", phase);
-
     return NextResponse.json({
       inquiry: formatted,
       success: true,
@@ -63,7 +58,6 @@ export async function GET(
   context: { params: Promise<{ id: string }> }
 ) {
   try {
-    // Await params in Next.js 15+
     const { id } = await context.params;
 
     const inquiry = await prisma.inquiry.findUnique({

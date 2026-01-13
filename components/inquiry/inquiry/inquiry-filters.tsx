@@ -18,7 +18,6 @@ const debounce = (func: Function, delay: number) => {
 };
 
 export default function InquiryFilters() {
-  // Get individual filter fields from store
   const {
     searchText,
     dateFrom,
@@ -30,15 +29,12 @@ export default function InquiryFilters() {
     clearFilters,
   } = useInquiryStore();
 
-  // Local state for search input (for debouncing)
   const [localSearchText, setLocalSearchText] = useState(searchText);
 
-  // Count active filters
   const activeFilterCount = [searchText, dateFrom, dateTo, minValue].filter(
     Boolean
   ).length;
 
-  // Debounced search handler
   const debouncedSearch = useMemo(
     () => debounce((value: string) => setSearchText(value), 500),
     [setSearchText]
